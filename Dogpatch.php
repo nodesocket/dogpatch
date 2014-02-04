@@ -55,18 +55,32 @@
             }
 
             if(intval($asserted_staus_code) !== intval($this->status_code)) {
-                throw new Exception("Asserted status code $asserted_staus_code does not equal returned status code $status_code.");
+                throw new Exception("Asserted status code '$asserted_staus_code' does not equal returned status code '$status_code'.");
             }
         }
 
         public function assertHeaders(array $asserted_headers = array()) {
             if(empty($this->headers)) {
-                $header_size = $this->curl_instance->get_curl_info(CURLINFO_HEADER_SIZE);
-                $headers_raw = substr($this->curl_response, 0, $header_size);
+                $headers_raw = substr($this->curl_response, 0, $this->curl_instance->get_curl_info(CURLINFO_HEADER_SIZE));
                 $this->headers = http_parse_headers($headers_raw);
             }
 
             foreach($asserted_headers as $k => $v) {
+                if(!array_key_exists($k, $this->headers)) {
+                    throw new Exception("Asserted header '$k' is not set.");
+                }
+
+                if(is_array($v)) {
+                    foreach($v as $inner_v) {
+                        if(!in_array($inner_v, $this->headers[$k])) {
+                            throw new Exception("Asserted header '$k=$inner_v' is not set.");
+                        }
+                    }
+                } else {
+                    if($v != $this->headers[$k]) {
+                        throw new Exception("Asserted header '$k=$v' does not equal returned header '$k=" . $this->headers[$k] . "'.");
+                    }
+                }
             }
         }
     }
