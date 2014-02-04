@@ -49,7 +49,7 @@
             $this->curl_response = $this->curl_instance->head_request($url, $headers);
         }
 
-        public function assetStatusCode($asserted_staus_code) {
+        public function assert_status_code($asserted_staus_code) {
             if(empty($this->status_code)) {
                 $this->status_code = $this->curl_instance->get_curl_info(CURLINFO_HTTP_CODE);
             }
@@ -59,7 +59,7 @@
             }
         }
 
-        public function assertHeaders(array $asserted_headers = array()) {
+        public function assert_headers(array $asserted_headers = array()) {
             if(empty($this->headers)) {
                 $headers_raw = substr($this->curl_response, 0, $this->curl_instance->get_curl_info(CURLINFO_HEADER_SIZE));
                 $this->headers = http_parse_headers($headers_raw);
@@ -82,6 +82,10 @@
                     }
                 }
             }
+        }
+
+        public function assert_body($asserted_body) {
+
         }
     }
 ?>
