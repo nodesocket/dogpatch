@@ -21,16 +21,12 @@ Constructor
 
     $dogpatch = new Dogpatch(array $options = array());
 
-##### Options:
+##### Options
 
 >**username:** A basic authentication username. Defaults to `null`.
->
 >**password:** A basic authentication password. Defaults to `null`.
->
 >**timeout:** Curl http request timeout in seconds. Defaults to `60`.
->
 >**ssl_verifypeer:** Attempt to verify ssl peer certificates using included `ca-bundle.crt`. Defaults to `true`.
->
 >**verbose:** Turns on verbose curl logging, and logs all requests into a file in `logs/curl_debug.log`. Defaults to `false`.
 
 Get
@@ -38,10 +34,9 @@ Get
 
     $dogpatch->get($url, array $headers = array());
 
-##### Parameters:
+##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
->
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Post
@@ -49,12 +44,10 @@ Post
 
     $dogpatch->post($url, array $post_data = array(), array $headers = array());
 
-##### Parameters:
+##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
->
 >**post_data:** An associated arrray of post data in `key => value` syntax.
->
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Put
@@ -62,10 +55,9 @@ Put
 
     $dogpatch->put($url, array $headers = array());
 
-##### Parameters:
+##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
->
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Delete
@@ -73,10 +65,9 @@ Delete
 
     $dogpatch->delete($url, array $headers = array());
 
-##### Parameters:
+##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
->
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Head
@@ -84,10 +75,9 @@ Head
 
     $dogpatch->head($url, array $headers = array());
 
-##### Parameters:
+##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
->
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Current Version
