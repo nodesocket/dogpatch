@@ -3,7 +3,9 @@ dogpatch
 
 ![dogpatch](http://blog.preservationnation.org/wp-content/uploads/2012/01/Dogpatch-Historic-District.jpg)
 
-#### An API testing framework, written in PHP using curl.
+#### An API testing framework, written in PHP using curl. Supports https, basic authentication, passing custom request headers, and most popular request methods.
+
+#### See complete examples in https://github.com/commando/dogpatch/tree/master/examples.
 
 Requirements
 ------------
@@ -21,72 +23,72 @@ Constructor
 
 ##### Options:
 
-**username:** A basic authentication username. Defaults to `null`.
-
-**password:** A basic authentication password. Defaults to `null`.
-
-**timeout:** Curl http request timeout in seconds. Defaults to `60`.
-
-**ssl_verifypeer:** Attempt to verify ssl peer certificate  using included `ca-bundle.crt`. Defaults to `true`.
-
-**verbose:** Turns on verbose curl logging, and logs all requests into a file in `logs/curl_debug.log`. Defaults to `false`.
+>**username:** A basic authentication username. Defaults to `null`.
+>
+>**password:** A basic authentication password. Defaults to `null`.
+>
+>**timeout:** Curl http request timeout in seconds. Defaults to `60`.
+>
+>**ssl_verifypeer:** Attempt to verify ssl peer certificates using included `ca-bundle.crt`. Defaults to `true`.
+>
+>**verbose:** Turns on verbose curl logging, and logs all requests into a file in `logs/curl_debug.log`. Defaults to `false`.
 
 Get
 ---
 
     $dogpatch->get($url, array $headers = array());
 
-##### Options:
+##### Parameters:
 
-**url:** A compete url including the sheme *(http, https)*.
+>**url:** A compete url including the sheme *(http, https)*.
+>
+>**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
-**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
-
-POST
+Post
 ----
 
     $dogpatch->post($url, array $post_data = array(), array $headers = array());
 
-##### Options:
+##### Parameters:
 
-**url:** A compete url including the sheme *(http, https)*.
+>**url:** A compete url including the sheme *(http, https)*.
+>
+>**post_data:** An associated arrray of post data in `key => value` syntax.
+>
+>**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
-**post_data:** An associated arrray of post data, in `key => value` syntax.
-
-**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
-
-PUT
+Put
 ---
 
     $dogpatch->put($url, array $headers = array());
 
-##### Options:
+##### Parameters:
 
-**url:** A compete url including the sheme *(http, https)*.
+>**url:** A compete url including the sheme *(http, https)*.
+>
+>**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
-**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
-
-DELETE
+Delete
 ------
 
     $dogpatch->delete($url, array $headers = array());
 
-##### Options:
+##### Parameters:
 
-**url:** A compete url including the sheme *(http, https)*.
+>**url:** A compete url including the sheme *(http, https)*.
+>
+>**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
-**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
-
-HEAD
+Head
 ----
 
     $dogpatch->head($url, array $headers = array());
 
-##### Options:
+##### Parameters:
 
-**url:** A compete url including the sheme *(http, https)*.
-
-**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
+>**url:** A compete url including the sheme *(http, https)*.
+>
+>**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Current Version
 ---------------
@@ -106,7 +108,7 @@ Create issues here in GitHub (https://github.com/commando/dogpatch/issues).
 Versioning
 ----------
 
-For transparency and insight into our release cycle, and for striving to maintain backward compatibility, Commando.io will be maintained under the semantic versioning guidelines.
+For transparency and insight into our release cycle, and for striving to maintain backward compatibility, dogpatch will be maintained under the semantic versioning guidelines.
 
 Releases will be numbered with the follow format:
 
