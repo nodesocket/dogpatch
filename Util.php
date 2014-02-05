@@ -32,4 +32,11 @@
             return $headers;
         }
     }
+
+    ////
+    // http://stackoverflow.com/a/4254008/425964
+    ////
+    function is_assoc($array) {
+        return (bool)count(array_filter(array_keys($array), 'is_string'));
+    }
 ?>

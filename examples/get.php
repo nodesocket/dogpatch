@@ -15,15 +15,17 @@
     # limitations under the License.
     */
 
-    require_once(dirname(__dir__) . "/Dogpatch.php");
+    require_once(dirname(__DIR__) . "/Dogpatch.php");
 
     $dogpatch = new Dogpatch();
-    $dogpatch->get("https://www.google.com");
-    $dogpatch->assert_status_code(200);
-    $dogpatch->assert_headers(array(
-        "Server" => "gws",
-        "Cache-Control" => "private, max-age=0",
-        "P3P" => "CP=\"This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657 for more info.\""
-    ));
-    $dogpatch->assert_body("");
+
+    $dogpatch->get("https://www.google.com")
+             ->assert_status_code(200)
+             ->assert_headers_exist(array(
+                "X-Frame-Options"
+             ))
+             ->assert_headers(array(
+                "Server" => "gws"
+             ))
+             ->assert_body("/<!doctype html>.*/");
 ?>

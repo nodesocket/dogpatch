@@ -15,6 +15,22 @@
     # limitations under the License.
     */
 
-    require_once(dirname(__dir__) . "/Dogpatch.php");
+    require_once(dirname(__DIR__) . "/Dogpatch.php");
 
+    $dogpatch = new Dogpatch(array(
+        "username" => "foo",
+        "password" => 'bar',
+        "timeout" => 10
+    ));
+
+    $dogpatch->get("https://api.stripe.com")
+             ->assert_status_code(401)
+             ->assert_headers_exist(array(
+                "www-Authenticate"
+             ))
+             ->assert_headers(array(
+                "Server" => "nginx",
+                "Cache-Control" => "no-cache, no-store"
+             ))
+             ->assert_body(IS_VALID_JSON);
 ?>

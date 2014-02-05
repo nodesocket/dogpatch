@@ -17,18 +17,29 @@
 
     require_once(dirname(__dir__) . "/Dogpatch.php");
 
-    $dogpatch = new Dogpatch(array(
-        "timeout" => 30
-    ));
+    $dogpatch = new Dogpatch();
 
-    $dogpatch->post("https://api.balancedpayments.com/api_keys")
-             ->assert_status_code(201)
+    $expected = new stdClass();
+    $expected->ip = "8.8.8.8";
+    $expected->country_code = "US";
+    $expected->country_name = "United States";
+    $expected->region_code = "";
+    $expected->region_name = "";
+    $expected->city = "dfds";
+    $expected->zipcode = "";
+    $expected->latitude = 38;
+    $expected->longitude = -97;
+    $expected->metro_code = "";
+    $expected->areacode = "";
+
+    $dogpatch->get("https://freegeoip.net/json/8.8.8.8")
+             ->assert_status_code(200)
              ->assert_headers_exist(array(
-                "X-Balanced-Host",
-                "X-Balanced-Guru"
+                "Date"
              ))
              ->assert_headers(array(
+                "Access-Control-Allow-Origin" => "*",
                 "Content-Type" => "application/json"
              ))
-             ->assert_body(IS_VALID_JSON);
+             ->assert_body_json($expected, VAR_EXPORT);
 ?>

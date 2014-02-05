@@ -16,9 +16,9 @@
     */
 
     class Curl {
-        public $curl_object;
+        private $curl_object;
 
-        public function __construct($username = null, $password = null, $timeout = 30, $ssl_verifypeer = true, $verbose = false) {
+        protected function __construct($username = null, $password = null, $timeout = 60, $ssl_verifypeer = true, $verbose = false) {
             $this->curl_object = curl_init();
 
             curl_setopt($this->curl_object, CURLOPT_CONNECTTIMEOUT, $timeout);
@@ -28,7 +28,7 @@
             curl_setopt($this->curl_object, CURLOPT_HEADER, 1);
 
             if($ssl_verifypeer) {
-                curl_setopt($this->curl_object, CURLOPT_CAINFO, BASE_PATH . '/assets/ssl/ca-bundle.crt');
+                curl_setopt($this->curl_object, CURLOPT_CAINFO, __DIR__ . '/assets/ssl/ca-bundle.crt');
                 curl_setopt($this->curl_object, CURLOPT_SSL_VERIFYPEER, true);
             } else {
                 curl_setopt($this->curl_object, CURLOPT_SSL_VERIFYPEER, false);
@@ -42,12 +42,12 @@
             }
 
             if($verbose) {
-                curl_setopt($this->curl_object, CURLOPT_STDERR, fopen("logs/curl_debug.log", "a+"));
+                curl_setopt($this->curl_object, CURLOPT_STDERR, fopen(__DIR__ . "/logs/curl_debug.log", "a+"));
                 curl_setopt($this->curl_object, CURLOPT_VERBOSE, true);
             }
         }
 
-        public function get_request($url, array $headers = array()) {
+        protected function get_request($url, array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
 
             if(!empty($headers)) {
@@ -57,22 +57,20 @@
             return curl_exec($this->curl_object);
         }
 
-        public function post_request($url, array $post_data = array(), array $headers = array()) {
+        protected function post_request($url, array $post_data = array(), array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_POST, true);
 
-            if(!empty($post_data)) {
-                curl_setopt($this->curl_object, CURLOPT_POSTFIELDS, $post_data);
-            }
-
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
             }
 
+            curl_setopt($this->curl_object, CURLOPT_POSTFIELDS, $post_data);
+
             return curl_exec($this->curl_object);
         }
 
-        public function put_request($url, array $headers = array()) {
+        protected function put_request($url, array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'PUT');
 
@@ -83,7 +81,7 @@
             return curl_exec($this->curl_object);
         }
 
-        public function delete_request($url, array $headers = array()) {
+        protected function delete_request($url, array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'DELETE');
 
@@ -94,7 +92,7 @@
             return curl_exec($this->curl_object);
         }
 
-        public function head_request($url, array $headers = array()) {
+        protected function head_request($url, array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'HEAD');
 
@@ -105,11 +103,11 @@
             return curl_exec($this->curl_object);
         }
 
-        public function get_curl_info($curl_option) {
+        protected function get_curl_info($curl_option) {
             return curl_getinfo($this->curl_object, $curl_option);
         }
 
-        public function close() {
+        protected function close() {
             curl_close($this->curl_object);
         }
     }
