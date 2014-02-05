@@ -32,5 +32,6 @@
                 "Server" => "nginx",
                 "Cache-Control" => "no-cache, no-store"
              ))
-             ->assert_body(IS_VALID_JSON);
+             ->assert_body(IS_VALID_JSON)
+             ->close();
 ?>

@@ -30,5 +30,6 @@
              ->assert_headers(array(
                 "Content-Type" => "application/json"
              ))
-             ->assert_body(IS_VALID_JSON);
+             ->assert_body(IS_VALID_JSON)
+             ->close();
 ?>

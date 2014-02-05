@@ -27,5 +27,6 @@
              ->assert_headers(array(
                 "Server" => "gws"
              ))
-             ->assert_body("/<!doctype html>.*/");
+             ->assert_body("/<!doctype html>.*/")
+             ->close();
 ?>

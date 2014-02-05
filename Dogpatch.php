@@ -157,7 +157,7 @@
             return $this;
         }
 
-        public function assert_body_json($asserted, $var_export = false) {
+        public function assert_body_json($asserted, $on_mismatch_var_export = false) {
             if(empty($this->body)) {
                 $this->body = substr($this->response, $this->get_curl_info(CURLINFO_HEADER_SIZE));
             }
@@ -169,7 +169,7 @@
             }
 
             if($asserted != $body) {
-                if($var_export) {
+                if($on_mismatch_var_export) {
                     throw new Exception("Asserted body does not exactly match returned body.\n\n--------------- ASSERTED BODY ---------------\n" . var_export($asserted, true) . "\n\n--------------- RETURNED BODY ---------------\n" . var_export($body, true) . "\n\n");
                 } else {
                     throw new Exception("Asserted body does not exactly match returned body.");
@@ -177,6 +177,14 @@
             }
 
             return $this;
+        }
+
+        public function close() {
+            parent::close();
+            unset($this->response);
+            unset($this->status_code);
+            unset($this->headers);
+            unset($this->body);
         }
     }
 ?>

@@ -109,6 +109,7 @@
 
         protected function close() {
             curl_close($this->curl_object);
+            unset($this->curl_object);
         }
     }
 ?>
