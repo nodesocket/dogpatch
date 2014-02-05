@@ -25,7 +25,7 @@
     $expected->country_name = "United States";
     $expected->region_code = "";
     $expected->region_name = "";
-    $expected->city = "dfds";
+    $expected->city = "";
     $expected->zipcode = "";
     $expected->latitude = 38;
     $expected->longitude = -97;
