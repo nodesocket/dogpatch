@@ -24,9 +24,13 @@ Constructor
 ##### Options
 
 >**username:** A basic authentication username. Defaults to `null`.
+
 >**password:** A basic authentication password. Defaults to `null`.
+
 >**timeout:** Curl http request timeout in seconds. Defaults to `60`.
+
 >**ssl_verifypeer:** Attempt to verify ssl peer certificates using included `ca-bundle.crt`. Defaults to `true`.
+
 >**verbose:** Turns on verbose curl logging, and logs all requests into a file in `logs/curl_debug.log`. Defaults to `false`.
 
 Get
@@ -37,6 +41,7 @@ Get
 ##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
+
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Post
@@ -47,7 +52,9 @@ Post
 ##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
+
 >**post_data:** An associated arrray of post data in `key => value` syntax.
+
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Put
@@ -58,6 +65,7 @@ Put
 ##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
+
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Delete
@@ -68,6 +76,7 @@ Delete
 ##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
+
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Head
@@ -78,6 +87,7 @@ Head
 ##### Parameters
 
 >**url:** A compete url including the sheme *(http, https)*.
+
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
 Current Version
