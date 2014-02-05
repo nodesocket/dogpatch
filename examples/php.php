@@ -17,8 +17,6 @@
 
     require_once(dirname(__dir__) . "/Dogpatch.php");
 
-    $dogpatch = new Dogpatch();
-
     $expected = new stdClass();
     $expected->ip = "8.8.8.8";
     $expected->country_code = "US";
@@ -31,6 +29,8 @@
     $expected->longitude = -97;
     $expected->metro_code = "";
     $expected->areacode = "";
+
+    $dogpatch = new Dogpatch();
 
     $dogpatch->get("https://freegeoip.net/json/8.8.8.8")
              ->assert_status_code(200)
