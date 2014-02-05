@@ -3,9 +3,9 @@ dogpatch
 
 ![dogpatch](http://blog.preservationnation.org/wp-content/uploads/2012/01/Dogpatch-Historic-District.jpg)
 
-#### An API testing framework, written in PHP using curl. Supports https, basic authentication, passing custom request headers, and most request methods. Orginally written for testing the [Commando.io](https://commando.io) API.
+#### An HTTP API testing framework, written in PHP using curl. Supports ssl, basic authentication, passing custom request headers, and most HTTP request methods. Orginally written for testing the [Commando.io](https://commando.io) API.
 
-###### Canonical Example
+##### Canonical Example
 
 ````php
 $dogpatch = new Dogpatch();
@@ -23,7 +23,7 @@ $dogpatch->get("https://www.google.com")
          ->close();
 ````
 
-#### See complete examples in https://github.com/commando/dogpatch/tree/master/examples.
+#### See full examples at https://github.com/commando/dogpatch/tree/master/examples.
 
 Requirements
 ------------
@@ -45,7 +45,7 @@ Constructor
 
 >**password:** A basic authentication password. Defaults to `null`.
 
->**timeout:** Curl http request timeout in seconds. Defaults to `60`.
+>**timeout:** Curl HTTP request timeout in seconds. Defaults to `60`.
 
 >**ssl_verifypeer:** Attempt to verify ssl peer certificates using included `ca-bundle.crt`. Defaults to `true`.
 
@@ -58,7 +58,7 @@ Get
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(http, https)*.
+>**url:** A compete url including the sheme *(HTTP, HTTPS)*.
 
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
@@ -69,7 +69,7 @@ Post
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(http, https)*.
+>**url:** A compete url including the sheme *(HTTP, HTTPS)*.
 
 >**post_data:** An associated arrray of post data in `key => value` syntax.
 
@@ -82,7 +82,7 @@ Put
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(http, https)*.
+>**url:** A compete url including the sheme *(HTTP, HTTPS)*.
 
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
@@ -93,7 +93,7 @@ Delete
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(http, https)*.
+>**url:** A compete url including the sheme *(HTTP, HTTPS)*.
 
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 
@@ -104,7 +104,7 @@ Head
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(http, https)*.
+>**url:** A compete url including the sheme *(HTTP, HTTPS)*.
 
 >**headers:** An associated array of additional request headers to pass. Defaults to an empty array.
 

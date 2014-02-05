@@ -42,6 +42,10 @@
             }
 
             if($verbose) {
+                if(!file_exists(__DIR__ . "/logs")) {
+                    mkdir(__DIR__ . "/logs", 0775);
+                }
+
                 curl_setopt($this->curl_object, CURLOPT_STDERR, fopen(__DIR__ . "/logs/curl_debug.log", "a+"));
                 curl_setopt($this->curl_object, CURLOPT_VERBOSE, true);
             }

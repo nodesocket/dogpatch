@@ -76,7 +76,7 @@
             }
 
             if(intval($asserted_staus_code) !== intval($this->status_code)) {
-                throw new Exception("Asserted status code '$asserted_staus_code' does not equal returned status code '$this->status_code'.");
+                throw new Exception("Asserted status code '$asserted_staus_code' does not equal response status code '$this->status_code'.");
             }
 
             return $this;
@@ -118,11 +118,11 @@
 
                     if(is_array($this->headers[$k])) {
                         if(!in_array($v, $this->headers[$k])) {
-                            throw new Exception("Asserted header '$k' exists, but the value '$v' does not match.");
+                            throw new Exception("Asserted header '$k' exists, but the response header value '$v' is not equal.");
                         }
                     } else {
                         if($v !== $this->headers[$k]) {
-                            throw new Exception("Asserted header '$k=$v' does not equal returned header '$k=" . $this->headers[$k] . "'.");
+                            throw new Exception("Asserted header '$k=$v' does not equal response header '$k=" . $this->headers[$k] . "'.");
                         }
                     }
                 }
@@ -144,20 +144,20 @@
 
             if($asserted_body === IS_VALID_JSON) {
                 if(json_decode($this->body === null)) {
-                    throw new Exception("Asserted body is not valid JSON.");
+                    throw new Exception("Response body is not valid JSON.");
                 }
 
                 return $this;
             }
 
             if(!@preg_match($asserted_body, $this->body, $_matches)) {
-                throw new Exception("Asserted body '$asserted_body' does not match.");
+                throw new Exception("Asserted body '$asserted_body' does not match response body.");
             }
 
             return $this;
         }
 
-        public function assert_body_json($asserted, $on_mismatch_var_export = false) {
+        public function assert_body_php($asserted, $on_not_equal_var_export = false) {
             if(empty($this->body)) {
                 $this->body = substr($this->response, $this->get_curl_info(CURLINFO_HEADER_SIZE));
             }
@@ -165,14 +165,14 @@
             $body = json_decode($this->body);
 
             if($body === null) {
-                throw new Exception("Asserted body is not valid JSON.");
+                throw new Exception("Response body is not valid JSON.");
             }
 
             if($asserted != $body) {
-                if($on_mismatch_var_export) {
-                    throw new Exception("Asserted body does not exactly match returned body.\n\n--------------- ASSERTED BODY ---------------\n" . var_export($asserted, true) . "\n\n--------------- RETURNED BODY ---------------\n" . var_export($body, true) . "\n\n");
+                if($on_not_equal_var_export) {
+                    throw new Exception("Asserted body does not equal response body.\n\n--------------- ASSERTED BODY ---------------\n" . var_export($asserted, true) . "\n\n--------------- RESPONSE BODY ---------------\n" . var_export($body, true) . "\n\n");
                 } else {
-                    throw new Exception("Asserted body does not exactly match returned body.");
+                    throw new Exception("Asserted body does not equal response body.");
                 }
             }
 

@@ -41,6 +41,6 @@
                 "Access-Control-Allow-Origin" => "*",
                 "Content-Type" => "application/json"
              ))
-             ->assert_body_json($expected, VAR_EXPORT)
+             ->assert_body_php($expected, VAR_EXPORT)
              ->close();
 ?>
