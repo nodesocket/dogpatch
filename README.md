@@ -10,16 +10,17 @@ dogpatch
 ````php
 $dogpatch = new Dogpatch();
 
-$dogpatch->get("https://www.google.com")
+$dogpatch->get("https://api.github.com")
          ->assert_status_code(200)
          ->assert_headers_exist(array(
-            "X-Frame-Options"
+            "X-GitHub-Request-Id",
+            "ETag"
          ))
          ->assert_headers(array(
-            "Server" => "gws",
-            "Transfer-Encoding" => "chunked"
+            "Server" => "GitHub.com",
+            "X-Content-Type-Options" => "nosniff"
          ))
-         ->assert_body("/<!doctype html>.*/")
+         ->assert_body(IS_VALID_JSON)
          ->close();
 ````
 
