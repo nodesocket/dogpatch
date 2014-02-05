@@ -21,6 +21,8 @@
     define("IS_VALID_JSON", "IS_VALID_JSON");
     define("VAR_EXPORT", true);
     define("NO_VAR_EXPORT", false);
+    define("USE_REGEX", true);
+    define("DONT_USE_REGEX", false);
 
     class Dogpatch extends Curl {
         private $response;
@@ -46,26 +48,31 @@
         }
 
         public function get($url, array $headers = array()) {
+            $this->unset_class_vars();
             $this->response = $this->get_request($url, $headers);
             return $this;
         }
 
         public function post($url, array $post_data = array(), array $headers = array()) {
+            $this->unset_class_vars();
             $this->response = $this->post_request($url, $post_data, $headers);
             return $this;
         }
 
         public function put($url, array $headers = array()) {
+            $this->unset_class_vars();
             $this->response = $this->put_request($url, $headers);
             return $this;
         }
 
         public function delete($url, array $headers = array()) {
+            $this->unset_class_vars();
             $this->response = $this->delete_request($url, $headers);
             return $this;
         }
 
         public function head($url, array $headers = array()) {
+            $this->unset_class_vars();
             $this->response = $this->head_request($url, $headers);
             return $this;
         }
@@ -137,7 +144,7 @@
             return $this;
         }
 
-        public function assert_body($asserted_body) {
+        public function assert_body($asserted_body, $use_regular_expression = false) {
             if(empty($this->body)) {
                 $this->body = substr($this->response, $this->get_curl_info(CURLINFO_HEADER_SIZE));
             }
@@ -150,8 +157,14 @@
                 return $this;
             }
 
-            if(!@preg_match($asserted_body, $this->body, $_matches)) {
-                throw new Exception("Asserted body '$asserted_body' does not match response body.");
+            if($use_regular_expression) {
+                if(!@preg_match($asserted_body, $this->body)) {
+                    throw new Exception("Asserted body '$asserted_body' does not match response body of '$this->body'.");
+                }
+            } else {
+                if(strpos($asserted_body, $this->body)) {
+                    throw new Exception("Asserted body '$asserted_body' does not equal response body of '$this->body'.");
+                }
             }
 
             return $this;
@@ -179,12 +192,16 @@
             return $this;
         }
 
-        public function close() {
-            parent::close();
+        private function unset_class_vars() {
             unset($this->response);
             unset($this->status_code);
             unset($this->headers);
             unset($this->body);
+        }
+
+        public function close() {
+            parent::close();
+            $this->unset_class_vars();
         }
     }
 ?>

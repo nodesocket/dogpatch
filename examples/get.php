@@ -19,6 +19,14 @@
 
     $dogpatch = new Dogpatch();
 
+    $dogpatch->get("https://freegeoip.net/csv/8.8.8.8")
+             ->assert_status_code(200)
+             ->assert_headers(array(
+                "Access-Control-Allow-Origin" => "*",
+                "Content-Type" => "application/csv"
+             ))
+             ->assert_body('"8.8.8.8","US","United States","","","","","38.0000","-97.0000","",""');
+
     $dogpatch->get("https://www.google.com")
              ->assert_status_code(200)
              ->assert_headers_exist(array(
@@ -28,6 +36,18 @@
                 "Server" => "gws",
                 "Transfer-Encoding" => "chunked"
              ))
-             ->assert_body("/<!doctype html>.*/")
+             ->assert_body("/<!doctype html>.*/", USE_REGEX);
+
+    $dogpatch->get("https://api.github.com")
+             ->assert_status_code(200)
+             ->assert_headers_exist(array(
+                "X-GitHub-Request-Id",
+                "ETag"
+             ))
+             ->assert_headers(array(
+                "Server" => "GitHub.com",
+                "X-Content-Type-Options" => "nosniff"
+             ))
+             ->assert_body(IS_VALID_JSON)
              ->close();
 ?>
