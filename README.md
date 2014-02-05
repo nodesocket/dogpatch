@@ -50,7 +50,7 @@ Constructor
 
 >**ssl_verifypeer:** Attempt to verify ssl peer certificates using included `ca-bundle.crt`. Defaults to `true`.
 
->**verbose:** Turns on verbose curl logging, and logs all requests into a file in `logs/curl_debug.log`. Defaults to `false`.
+>**verbose:** Turns on verbose curl logging, and log all requests into a file `logs/curl_debug.log`. Defaults to `false`.
 
 Get
 ---
