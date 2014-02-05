@@ -25,7 +25,8 @@
                 "X-Frame-Options"
              ))
              ->assert_headers(array(
-                "Server" => "gws"
+                "Server" => "gws",
+                "Transfer-Encoding" => "chunked"
              ))
              ->assert_body("/<!doctype html>.*/")
              ->close();

@@ -5,6 +5,24 @@ dogpatch
 
 #### An API testing framework, written in PHP using curl. Supports https, basic authentication, passing custom request headers, and most request methods. Orginally written for testing the [Commando.io](https://commando.io) API.
 
+###### Canonical Example
+
+````php
+$dogpatch = new Dogpatch();
+
+$dogpatch->get("https://www.google.com")
+         ->assert_status_code(200)
+         ->assert_headers_exist(array(
+            "X-Frame-Options"
+         ))
+         ->assert_headers(array(
+            "Server" => "gws",
+            "Transfer-Encoding" => "chunked"
+         ))
+         ->assert_body("/<!doctype html>.*/")
+         ->close();
+````
+
 #### See complete examples in https://github.com/commando/dogpatch/tree/master/examples.
 
 Requirements
