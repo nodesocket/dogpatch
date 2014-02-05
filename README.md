@@ -3,7 +3,7 @@ dogpatch
 
 ![dogpatch](http://blog.preservationnation.org/wp-content/uploads/2012/01/Dogpatch-Historic-District.jpg)
 
-#### An API testing framework, written in PHP using curl. Supports https, basic authentication, passing custom request headers, and most popular request methods.
+#### An API testing framework, written in PHP using curl. Supports https, basic authentication, passing custom request headers, and most request methods. Orginally written for [Commando.io](https://commando.io).
 
 #### See complete examples in https://github.com/commando/dogpatch/tree/master/examples.
 

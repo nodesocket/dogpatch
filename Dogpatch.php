@@ -147,7 +147,7 @@
                     throw new Exception("Asserted body is not valid JSON.");
                 }
 
-                return;
+                return $this;
             }
 
             if(!@preg_match($asserted_body, $this->body, $_matches)) {
