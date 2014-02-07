@@ -78,7 +78,7 @@ $dogpatch->get($url, array $headers = array());
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(HTTP, HTTPS)*.
+>**url:** A compete url including the scheme *(HTTP, HTTPS)*.
 
 >**headers:** An optional associated array of additional request headers to pass. Defaults to an empty array.
 
@@ -91,7 +91,7 @@ $dogpatch->post($url, array $post_data = array(), array $headers = array());
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(HTTP, HTTPS)*.
+>**url:** A compete url including the scheme *(HTTP, HTTPS)*.
 
 >**post_data:** An associated arrray of post data in `key => value` syntax.
 
@@ -106,7 +106,7 @@ $dogpatch->put($url, array $headers = array());
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(HTTP, HTTPS)*.
+>**url:** A compete url including the scheme *(HTTP, HTTPS)*.
 
 >**headers:** An optional associated array of additional request headers to pass. Defaults to an empty array.
 
@@ -119,7 +119,7 @@ $dogpatch->delete($url, array $headers = array());
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(HTTP, HTTPS)*.
+>**url:** A compete url including the scheme *(HTTP, HTTPS)*.
 
 >**headers:** An optional associated array of additional request headers to pass. Defaults to an empty array.
 
@@ -132,7 +132,7 @@ $dogpatch->head($url, array $headers = array());
 
 ##### Parameters
 
->**url:** A compete url including the sheme *(HTTP, HTTPS)*.
+>**url:** A compete url including the scheme *(HTTP, HTTPS)*.
 
 >**headers:** An optional associated array of additional request headers to pass. Defaults to an empty array.
 
