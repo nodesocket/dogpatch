@@ -54,7 +54,7 @@ Constructor
 -----------
 
 ````php
-    $dogpatch = new Dogpatch(array $options = array());
+$dogpatch = new Dogpatch(array $options = array());
 ````
 
 ##### Options
@@ -73,7 +73,7 @@ Get
 ---
 
 ````php
-    $dogpatch->get($url, array $headers = array());
+$dogpatch->get($url, array $headers = array());
 ````
 
 ##### Parameters
@@ -86,7 +86,7 @@ Post
 ----
 
 ````php
-    $dogpatch->post($url, array $post_data = array(), array $headers = array());
+$dogpatch->post($url, array $post_data = array(), array $headers = array());
 ````
 
 ##### Parameters
@@ -101,7 +101,7 @@ Put
 ---
 
 ````php
-    $dogpatch->put($url, array $headers = array());
+$dogpatch->put($url, array $headers = array());
 ````
 
 ##### Parameters
@@ -114,7 +114,7 @@ Delete
 ------
 
 ````php
-    $dogpatch->delete($url, array $headers = array());
+$dogpatch->delete($url, array $headers = array());
 ````
 
 ##### Parameters
@@ -127,7 +127,7 @@ Head
 ----
 
 ````php
-    $dogpatch->head($url, array $headers = array());
+$dogpatch->head($url, array $headers = array());
 ````
 
 ##### Parameters
@@ -140,7 +140,7 @@ Assert Status Code
 ------------------
 
 ````php
-    $dogpatch->assert_status_code($asserted_staus_code);
+$dogpatch->assert_status_code($asserted_staus_code);
 ````
 
 ##### Parameters
@@ -151,7 +151,7 @@ Assert Headers Exist
 --------------------
 
 ````php
-    $dogpatch->assert_headers_exist(array $asserted_headers = array());
+$dogpatch->assert_headers_exist(array $asserted_headers = array());
 ````
 
 ##### Parameters
@@ -162,7 +162,7 @@ Assert Headers
 --------------
 
 ````php
-    $dogpatch->assert_headers(array $asserted_headers = array());
+$dogpatch->assert_headers(array $asserted_headers = array());
 ````
 
 ##### Parameters
@@ -173,7 +173,7 @@ Assert Body
 -----------
 
 ````php
-    $dogpatch->assert_body($asserted_body, $use_regular_expression = false);
+$dogpatch->assert_body($asserted_body, $use_regular_expression = false);
 ````
 
 ##### Parameters
@@ -222,7 +222,6 @@ $dogpatch = new Dogpatch();
 $dogpatch->get("https://www.google.com")
          ->close()
          ->get("https://github.com")
-
 ````
 
 Instead do the following:
@@ -235,7 +234,6 @@ $dogpatch->get("https://www.google.com")
 $dogpatch = new Dogpatch();
 $dogpatch->get("https://github.com")
          ->close();
-
 ````
 
 Or, even better, if you'd like to reuse the same curl connection and options:
@@ -245,7 +243,6 @@ $dogpatch = new Dogpatch();
 $dogpatch->get("https://www.google.com")
          ->get("https://github.com")
          ->close();
-
 ````
 
 Current Version
