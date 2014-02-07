@@ -32,8 +32,8 @@
         private $headers;
         private $body;
 
-        public function __construct(array $options = array()) {
-            $default_options = array(
+        public function __construct(array $curl_options = array()) {
+            $default_curl_options = array(
                 "username" => null,
                 "password" => null,
                 "timeout" => 60,
@@ -41,12 +41,12 @@
                 "verbose" => false
             );
 
-            $options = array_merge($default_options, $options);
+            $curl_options = array_merge($default_curl_options, $curl_options);
 
             ////
             // Really php? This makes baby jesus cry.
             ////
-            call_user_func_array("parent::__construct", $options);
+            call_user_func_array("parent::__construct", $curl_options);
         }
 
         public function get($url, array $headers = array()) {

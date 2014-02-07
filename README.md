@@ -39,7 +39,7 @@ $dogpatch->get("https://freegeoip.net/json/8.8.8.8")
          ->close();
 ````
 
-#### See all the full examples at https://github.com/commando/dogpatch/tree/master/examples.
+#### See the full examples at https://github.com/commando/dogpatch/tree/master/examples.
 
 Requirements
 ------------
@@ -54,10 +54,10 @@ Constructor
 -----------
 
 ````php
-$dogpatch = new Dogpatch(array $options = array());
+$dogpatch = new Dogpatch(array $curl_options = array());
 ````
 
-##### Options
+##### Curl Options
 
 >**username:** A basic authentication username. Defaults to `null`.
 
