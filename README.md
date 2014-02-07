@@ -3,7 +3,7 @@ dogpatch
 
 ![dogpatch](http://blog.preservationnation.org/wp-content/uploads/2012/01/Dogpatch-Historic-District.jpg)
 
-#### An HTTP API testing framework, written in PHP using curl. Supports ssl, basic authentication, passing custom request headers, redirection **(10 levels)**, and most HTTP request methods. Orginally written for testing the [Commando.io](https://commando.io) API.
+#### An HTTP API testing framework, written in PHP using curl. Supports ssl, basic authentication, passing custom request headers, redirection *(10 levels)*, and most HTTP request methods. Orginally written for testing the [Commando.io](https://commando.io) API.
 
 ##### Canonical Examples
 
@@ -182,8 +182,8 @@ $dogpatch->assert_body($asserted_body, $use_regular_expression = false);
 
 >**use_regular_expression:** An optional true/false flag which you may reference with globals `USE_REGEX` and `DONT_USE_REGEX`. If you wish `$asserted_body` to be checked via regular expression, you must set this parameter to true. Defaults to false.
 
-Assert Body PHP
----------------
+Assert Body Against PHP
+-----------------------
 
 ````php
 $dogpatch->assert_body_php($asserted, $on_not_equal_var_export = false);
@@ -191,12 +191,12 @@ $dogpatch->assert_body_php($asserted, $on_not_equal_var_export = false);
 
 ##### Parameters
 
->**asserted:** Assert a native PHP type **(usually a PHP object or array)** against the response body. The response body must be valid JSON, which is automatically decoded and compared against `$asserted`. PHP type keys and values are checked **case-sensitive**.
+>**asserted:** Assert a native PHP type *(usually a PHP object or array)* against the response body. The response body must be valid JSON, which is automatically decoded and compared against `$asserted`. PHP type keys and values are checked **case-sensitive**.
 
 >**on_not_equal_var_export:** An optional true/false flag which you may reference with globals `VAR_EXPORT` and `DONT_VAR_EXPORT`. If a mismatch is detected between `$asserted` and the response body, variable export both making it convenient to find discrepancies. Defaults to false.
 
-Assert Body JSON File
----------------------
+Assert Body Against JSON File
+-----------------------------
 
 ````php
 $dogpatch->assert_body_json_file($asserted_json_file, $on_not_equal_print_json = false);
@@ -204,7 +204,7 @@ $dogpatch->assert_body_json_file($asserted_json_file, $on_not_equal_print_json =
 
 ##### Parameters
 
->**asserted_json_file:** Assert a JSON file **(the full path)** against the response body. The response body must be valid JSON, which is automatically decoded, pretty printed, and compared against the passed-in JSON file which is also pretty printed. Key names and values are checked **case-sensitive**.
+>**asserted_json_file:** Assert a JSON file *(the full path)* against the response body. The response body must be valid JSON, which is automatically decoded, pretty printed, and compared against the passed-in JSON file which is also pretty printed. Key names and values are checked **case-sensitive**.
 
 >**on_not_equal_print_json:** An optional true/false flag which you may reference with globals `PRINT_JSON` and `DONT_PRINT_JSON`. If a mismatch is detected between the JSON file and the response body, print both making it convenient to find discrepancies. Defaults to false.
 
