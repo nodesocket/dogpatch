@@ -17,8 +17,7 @@ $dogpatch->get("https://api.github.com")
             "ETag"
          ))
          ->assert_headers(array(
-            "Server" => "GitHub.com",
-            "X-Content-Type-Options" => "nosniff"
+            "Server" => "GitHub.com"
          ))
          ->assert_body(IS_VALID_JSON)
          ->close();
@@ -30,10 +29,11 @@ $dogpatch = new Dogpatch();
 $dogpatch->get("https://freegeoip.net/json/8.8.8.8")
          ->assert_status_code(200)
          ->assert_headers_exist(array(
-            "Access-Control-Allow-Origin"
+            "Content-Length"
          ))
          ->assert_headers(array(
-            "Content-Type" => "application/json"
+            "Content-Type" => "application/json",
+            "Access-Control-Allow-Origin" => "*"
          ))
          ->assert_body_json_file(dirname(__DIR__) . "/examples/json/freegeoip.net.json")
          ->close();

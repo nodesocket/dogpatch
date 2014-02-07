@@ -45,8 +45,7 @@
                 "ETag"
              ))
              ->assert_headers(array(
-                "Server" => "GitHub.com",
-                "X-Content-Type-Options" => "nosniff"
+                "Server" => "GitHub.com"
              ))
              ->assert_body(IS_VALID_JSON)
              ->close();
