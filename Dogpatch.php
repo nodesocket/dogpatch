@@ -19,10 +19,12 @@
     require_once(__DIR__ . "/Util.php");
 
     define("IS_VALID_JSON", "IS_VALID_JSON");
-    define("VAR_EXPORT", true);
-    define("NO_VAR_EXPORT", false);
     define("USE_REGEX", true);
     define("DONT_USE_REGEX", false);
+    define("VAR_EXPORT", true);
+    define("DONT_VAR_EXPORT", false);
+    define("PRINT_JSON", true);
+    define("DONT_PRINT_JSON", false);
 
     class Dogpatch extends Curl {
         private $response;
@@ -151,7 +153,7 @@
 
             if($asserted_body === IS_VALID_JSON) {
                 if(json_decode($this->body === null)) {
-                    throw new Exception("Response body is not valid JSON.");
+                    throw new Exception("Response body is invalid JSON.");
                 }
 
                 return $this;
@@ -178,7 +180,7 @@
             $body = json_decode($this->body);
 
             if($body === null) {
-                throw new Exception("Response body is not valid JSON.");
+                throw new Exception("Response body is invalid JSON.");
             }
 
             if($asserted != $body) {
@@ -192,16 +194,48 @@
             return $this;
         }
 
-        private function unset_class_vars() {
-            unset($this->response);
-            unset($this->status_code);
-            unset($this->headers);
-            unset($this->body);
+        public function assert_body_json_file($asserted_json_file, $on_not_equal_print_json = false) {
+            if(!file_exists($asserted_json_file)) {
+                throw new Exception("Asserted JSON file '$asserted_json_file' does not exist.");
+            }
+
+            $asserted = file_get_contents($asserted_json_file);
+            if(json_decode($asserted) === null) {
+                throw new Exception("Asserted JSON file is invalid JSON.");
+            }
+
+            if(empty($this->body)) {
+                $this->body = substr($this->response, $this->get_curl_info(CURLINFO_HEADER_SIZE));
+            }
+
+            if(json_decode($this->body) === null) {
+                throw new Exception("Response body is invalid JSON.");
+            }
+
+            $asserted = prettyPrintJSON($asserted);
+            $body = prettyPrintJSON($this->body);
+
+            if($asserted != $body) {
+                if($on_not_equal_print_json) {
+                    throw new Exception("Asserted JSON file does not equal response body.\n\n--------------- ASSERTED JSON FILE ---------------\n" . $asserted . "\n\n--------------- RESPONSE BODY ---------------\n" . $body . "\n\n");
+                } else {
+                    throw new Exception("Asserted JSON file does not equal response body.");
+                }
+            }
+
+            return $this;
         }
 
         public function close() {
             parent::close();
             $this->unset_class_vars();
+        }
+
+        private function unset_class_vars() {
+            unset($this->response);
+            unset($this->status_code);
+            unset($this->headers);
+            unset($this->body);
         }
     }
 ?>
