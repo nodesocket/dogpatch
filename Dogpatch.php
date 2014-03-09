@@ -153,11 +153,11 @@
             }
 
             if($asserted_body === IS_EMPTY) {
-                if($this->body !== "") {
+                if($this->body === false || $this->body === "") {
+                    return $this;
+                } else {
                     throw new Exception("Response body is not empty.");
                 }
-
-                return $this;
             }
 
             if($asserted_body === IS_VALID_JSON) {
