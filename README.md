@@ -178,7 +178,7 @@ $dogpatch->assert_body($asserted_body, $use_regular_expression = false);
 
 ##### Parameters
 
->**asserted_body:** Assert a response body, takes one of three options. A string that is checked **case-sensitive**. A regular expression that is checked according to the defined expression. A speical flag `IS_VALID_JSON` which only validates that the response body is proper JSON and able to be decoded.
+>**asserted_body:** Assert a response body, takes one of four options. A string that is checked **case-sensitive**. A regular expression that is checked according to the defined expression. A speical flag `IS_VALID_JSON` or `IS_EMPTY`. `IS_VALID_JSON` only validates that the response body is proper JSON and able to be decoded. `IS_EMPTY` validates that the response body is empty.
 
 >**use_regular_expression:** An optional true/false flag which you may reference with globals `USE_REGEX` and `DONT_USE_REGEX`. If you wish `$asserted_body` to be checked via regular expression, you must set this parameter to true. Defaults to false.
 

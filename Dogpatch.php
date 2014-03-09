@@ -19,6 +19,7 @@
     require_once(__DIR__ . "/Util.php");
 
     define("IS_VALID_JSON", "IS_VALID_JSON");
+    define("IS_EMPTY", "IS_EMPTY");
     define("USE_REGEX", true);
     define("DONT_USE_REGEX", false);
     define("VAR_EXPORT", true);
@@ -149,6 +150,14 @@
         public function assert_body($asserted_body, $use_regular_expression = false) {
             if(empty($this->body)) {
                 $this->body = substr($this->response, $this->get_curl_info(CURLINFO_HEADER_SIZE));
+            }
+
+            if($asserted_body === IS_EMPTY) {
+                if($this->body !== "") {
+                    throw new Exception("Response body is not empty.");
+                }
+
+                return $this;
             }
 
             if($asserted_body === IS_VALID_JSON) {
