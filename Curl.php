@@ -54,6 +54,7 @@
         protected function get_request($url, array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_POST, false);
+            curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'GET');
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
@@ -65,6 +66,7 @@
         protected function post_request($url, array $post_data = array(), array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_POST, true);
+            curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'POST');
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
