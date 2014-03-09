@@ -53,10 +53,14 @@
 
         protected function get_request($url, array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
+            curl_setopt($this->curl_object, CURLOPT_POST, false);
+            curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, null);
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
             }
+
+            curl_setopt($this->curl_object, CURLOPT_POSTFIELDS, null);
 
             return curl_exec($this->curl_object);
         }
@@ -64,6 +68,7 @@
         protected function post_request($url, array $post_data = array(), array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_POST, true);
+            curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, null);
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
@@ -76,33 +81,42 @@
 
         protected function put_request($url, array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
+            curl_setopt($this->curl_object, CURLOPT_POST, false);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'PUT');
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
             }
 
+            curl_setopt($this->curl_object, CURLOPT_POSTFIELDS, null);
+
             return curl_exec($this->curl_object);
         }
 
         protected function delete_request($url, array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
+            curl_setopt($this->curl_object, CURLOPT_POST, false);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'DELETE');
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
             }
 
+            curl_setopt($this->curl_object, CURLOPT_POSTFIELDS, null);
+
             return curl_exec($this->curl_object);
         }
 
         protected function head_request($url, array $headers = array()) {
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
+            curl_setopt($this->curl_object, CURLOPT_POST, false);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'HEAD');
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
             }
+
+            curl_setopt($this->curl_object, CURLOPT_POSTFIELDS, null);
 
             return curl_exec($this->curl_object);
         }
