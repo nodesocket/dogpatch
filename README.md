@@ -32,7 +32,6 @@ $dogpatch->get("https://freegeoip.net/json/8.8.8.8")
             "Content-Length"
          ))
          ->assert_headers(array(
-            "Content-Type" => "application/json",
             "Access-Control-Allow-Origin" => "*"
          ))
          ->assert_body_json_file(dirname(__DIR__) . "/examples/json/freegeoip.net.json")
