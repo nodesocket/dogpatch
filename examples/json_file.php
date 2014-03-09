@@ -25,7 +25,6 @@
                 "Content-Length"
              ))
              ->assert_headers(array(
-                "Content-Type" => "application/json",
                 "Access-Control-Allow-Origin" => "*"
              ))
              ->assert_body_json_file(dirname(__DIR__) . "/examples/json/freegeoip.net.json", ECHO_JSON)

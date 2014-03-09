@@ -38,8 +38,7 @@
                 "Date"
              ))
              ->assert_headers(array(
-                "Access-Control-Allow-Origin" => "*",
-                "Content-Type" => "application/json"
+                "Access-Control-Allow-Origin" => "*"
              ))
              ->assert_body_php($expected, VAR_EXPORT)
              ->close();

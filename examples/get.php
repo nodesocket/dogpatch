@@ -22,8 +22,7 @@
     $dogpatch->get("https://freegeoip.net/csv/8.8.8.8")
              ->assert_status_code(200)
              ->assert_headers(array(
-                "Access-Control-Allow-Origin" => "*",
-                "Content-Type" => "application/csv"
+                "Access-Control-Allow-Origin" => "*"
              ))
              ->assert_body('"8.8.8.8","US","United States","","","","","38.0000","-97.0000","",""');
 
