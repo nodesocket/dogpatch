@@ -18,29 +18,29 @@ namespace Dogpatch;
 */
 
 class Curl {
-    private $curl_object;
+    private $curlObject;
 
-    protected function __construct($username = null, $password = null, $timeout = 60, $ssl_verifypeer = true, $verbose = false) {
-        $this->curl_object = curl_init();
+    protected function __construct($username = null, $password = null, $timeout = 60, $sslVerifyPeer = true, $verbose = false) {
+        $this->curlObject = curl_init();
 
-        curl_setopt($this->curl_object, CURLOPT_CONNECTTIMEOUT, $timeout);
-        curl_setopt($this->curl_object, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($this->curl_object, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($this->curl_object, CURLOPT_MAXREDIRS, 10);
-        curl_setopt($this->curl_object, CURLOPT_HEADER, 1);
+        curl_setopt($this->curlObject, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($this->curlObject, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->curlObject, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($this->curlObject, CURLOPT_MAXREDIRS, 10);
+        curl_setopt($this->curlObject, CURLOPT_HEADER, 1);
 
-        if ($ssl_verifypeer) {
-            curl_setopt($this->curl_object, CURLOPT_CAINFO, __DIR__ . '/assets/ssl/ca-bundle.crt');
-            curl_setopt($this->curl_object, CURLOPT_SSL_VERIFYPEER, true);
+        if ($sslVerifyPeer) {
+            curl_setopt($this->curlObject, CURLOPT_CAINFO, __DIR__ . '/assets/ssl/ca-bundle.crt');
+            curl_setopt($this->curlObject, CURLOPT_SSL_VERIFYPEER, true);
         } else {
-            curl_setopt($this->curl_object, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($this->curlObject, CURLOPT_SSL_VERIFYPEER, false);
         }
 
-        curl_setopt($this->curl_object, CURLOPT_USERAGENT, "dogpatch");
+        curl_setopt($this->curlObject, CURLOPT_USERAGENT, "dogpatch");
 
         if (!empty($username) || !empty($password)) {
-            curl_setopt($this->curl_object, CURLOPT_USERPWD, $username . ":" . $password);
-            curl_setopt($this->curl_object, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_setopt($this->curlObject, CURLOPT_USERPWD, $username . ":" . $password);
+            curl_setopt($this->curlObject, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         }
 
         if ($verbose) {
@@ -48,80 +48,80 @@ class Curl {
                 mkdir(__DIR__ . "/logs", 0775);
             }
 
-            curl_setopt($this->curl_object, CURLOPT_STDERR, fopen(__DIR__ . "/logs/curl_debug.log", "a+"));
-            curl_setopt($this->curl_object, CURLOPT_VERBOSE, true);
+            curl_setopt($this->curlObject, CURLOPT_STDERR, fopen(__DIR__ . "/logs/curl_debug.log", "a+"));
+            curl_setopt($this->curlObject, CURLOPT_VERBOSE, true);
         }
     }
 
-    protected function get_request($url, array $headers = array()) {
-        curl_setopt($this->curl_object, CURLOPT_URL, $url);
-        curl_setopt($this->curl_object, CURLOPT_POST, false);
-        curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'GET');
+    protected function getRequest($url, array $headers = array()) {
+        curl_setopt($this->curlObject, CURLOPT_URL, $url);
+        curl_setopt($this->curlObject, CURLOPT_POST, false);
+        curl_setopt($this->curlObject, CURLOPT_CUSTOMREQUEST, 'GET');
 
         if (!empty($headers)) {
-            curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($this->curlObject, CURLOPT_HTTPHEADER, $headers);
         }
 
-        return curl_exec($this->curl_object);
+        return curl_exec($this->curlObject);
     }
 
-    protected function post_request($url, array $post_data = array(), array $headers = array()) {
-        curl_setopt($this->curl_object, CURLOPT_URL, $url);
-        curl_setopt($this->curl_object, CURLOPT_POST, true);
-        curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'POST');
+    protected function postRequest($url, array $postData = array(), array $headers = array()) {
+        curl_setopt($this->curlObject, CURLOPT_URL, $url);
+        curl_setopt($this->curlObject, CURLOPT_POST, true);
+        curl_setopt($this->curlObject, CURLOPT_CUSTOMREQUEST, 'POST');
 
         if (!empty($headers)) {
-            curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($this->curlObject, CURLOPT_HTTPHEADER, $headers);
         }
 
-        curl_setopt($this->curl_object, CURLOPT_POSTFIELDS, $post_data);
+        curl_setopt($this->curlObject, CURLOPT_POSTFIELDS, $postData);
 
-        return curl_exec($this->curl_object);
+        return curl_exec($this->curlObject);
     }
 
-    protected function put_request($url, array $headers = array()) {
-        curl_setopt($this->curl_object, CURLOPT_URL, $url);
-        curl_setopt($this->curl_object, CURLOPT_POST, false);
-        curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'PUT');
+    protected function putRequest($url, array $headers = array()) {
+        curl_setopt($this->curlObject, CURLOPT_URL, $url);
+        curl_setopt($this->curlObject, CURLOPT_POST, false);
+        curl_setopt($this->curlObject, CURLOPT_CUSTOMREQUEST, 'PUT');
 
         if (!empty($headers)) {
-            curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($this->curlObject, CURLOPT_HTTPHEADER, $headers);
         }
 
-        return curl_exec($this->curl_object);
+        return curl_exec($this->curlObject);
     }
 
-    protected function delete_request($url, array $headers = array()) {
-        curl_setopt($this->curl_object, CURLOPT_URL, $url);
-        curl_setopt($this->curl_object, CURLOPT_POST, false);
-        curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'DELETE');
+    protected function deleteRequest($url, array $headers = array()) {
+        curl_setopt($this->curlObject, CURLOPT_URL, $url);
+        curl_setopt($this->curlObject, CURLOPT_POST, false);
+        curl_setopt($this->curlObject, CURLOPT_CUSTOMREQUEST, 'DELETE');
 
         if (!empty($headers)) {
-            curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($this->curlObject, CURLOPT_HTTPHEADER, $headers);
         }
 
-        return curl_exec($this->curl_object);
+        return curl_exec($this->curlObject);
     }
 
-    protected function head_request($url, array $headers = array()) {
-        curl_setopt($this->curl_object, CURLOPT_URL, $url);
-        curl_setopt($this->curl_object, CURLOPT_POST, false);
-        curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'HEAD');
+    protected function headRequest($url, array $headers = array()) {
+        curl_setopt($this->curlObject, CURLOPT_URL, $url);
+        curl_setopt($this->curlObject, CURLOPT_POST, false);
+        curl_setopt($this->curlObject, CURLOPT_CUSTOMREQUEST, 'HEAD');
 
         if (!empty($headers)) {
-            curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($this->curlObject, CURLOPT_HTTPHEADER, $headers);
         }
 
-        return curl_exec($this->curl_object);
+        return curl_exec($this->curlObject);
     }
 
-    protected function get_curl_info($curl_option) {
-        return curl_getinfo($this->curl_object, $curl_option);
+    protected function getCurlInfo($curl_option) {
+        return curl_getinfo($this->curlObject, $curl_option);
     }
 
     protected function close() {
-        curl_close($this->curl_object);
-        unset($this->curl_object);
+        curl_close($this->curlObject);
+        unset($this->curlObject);
     }
 }
 

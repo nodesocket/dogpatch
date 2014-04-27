@@ -1,4 +1,6 @@
 <?php
+namespace Dogpatch;
+
 ////
 // Via: http://www.php.net/manual/en/function.http-parse-headers.php#112986
 ///
@@ -37,7 +39,7 @@ if (!function_exists('http_parse_headers')) {
 ////
 // Via: http://stackoverflow.com/a/4254008/425964
 ////
-function is_assoc($array) {
+function isAssoc($array) {
     return (bool) count(array_filter(array_keys($array), 'is_string'));
 }
 
