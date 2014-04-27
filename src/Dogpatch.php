@@ -29,7 +29,7 @@ define("DONT_VAR_EXPORT", false);
 define("PRINT_JSON", true);
 define("DONT_PRINT_JSON", false);
 
-class Dogpatch extends \Curl {
+class Dogpatch extends Curl {
     private $response;
     private $status_code;
     private $headers;
