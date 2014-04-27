@@ -1,0 +1,14 @@
+{
+    "name": "commando/dogpatch",
+    "description": "An HTTP API testing framework, written in PHP using curl",
+    "authors": [
+        {
+            "name": "NodeSocket"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "commando\\dogpatch\\": "src/"
+        }
+    }
+}
