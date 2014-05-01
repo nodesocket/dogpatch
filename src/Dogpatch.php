@@ -35,20 +35,7 @@ class Dogpatch extends Curl {
     private $body;
 
     public function __construct(array $curlOptions = array()) {
-        $defaultCurlOptions = array(
-            "username" => null,
-            "password" => null,
-            "timeout" => 60,
-            "ssl_verifypeer" => true,
-            "verbose" => false
-        );
-
-        $curlOptions = array_merge($defaultCurlOptions, $curlOptions);
-
-        ////
-        // Really php? This makes baby jesus cry.
-        ////
-        call_user_func_array("parent::__construct", $curlOptions);
+        parent::__construct($curlOptions);
     }
 
     public function get($url, array $headers = array()) {
