@@ -15,7 +15,9 @@
     # limitations under the License.
     */
 
-    require_once(dirname(__dir__) . "/Dogpatch.php");
+    require_once(__DIR__ . "/../Util.php");
+    require_once(__DIR__ . "/../Curl.php");
+    require_once(__DIR__ . "/../Dogpatch.php");
 
     use Dogpatch\Dogpatch;
 
@@ -29,6 +31,6 @@
              ->assertHeaders(array(
                 "Access-Control-Allow-Origin" => "*"
              ))
-             ->assertBodyJsonFile(dirname(__DIR__) . "/examples/json/freegeoip.net.json", ECHO_JSON)
+             ->assertBodyJsonFile(__DIR__ . "/json/freegeoip.net.json", ECHO_JSON)
              ->close();
 ?>
