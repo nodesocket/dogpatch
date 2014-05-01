@@ -17,19 +17,21 @@
 
     require_once(dirname(__dir__) . "/Dogpatch.php");
 
+    use Dogpatch\Dogpatch;
+
     $dogpatch = new Dogpatch(array(
         "timeout" => 30
     ));
 
     $dogpatch->post("https://api.balancedpayments.com/api_keys")
-             ->assert_status_code(201)
-             ->assert_headers_exist(array(
+             ->assertStatusCode(201)
+             ->assertHeadersExist(array(
                 "X-Balanced-Host",
                 "X-Balanced-Guru"
              ))
-             ->assert_headers(array(
+             ->assertHeaders(array(
                 "Content-Type" => "application/json"
              ))
-             ->assert_body(IS_VALID_JSON)
+             ->assertBody(IS_VALID_JSON)
              ->close();
 ?>

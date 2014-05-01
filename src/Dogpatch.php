@@ -142,7 +142,7 @@ class Dogpatch extends Curl {
             }
         }
         ////
-        // Standard indexed array, call assert_headers_exist() instead
+        // Standard indexed array, call assertHeadersExist() instead
         ////
         else {
             $this->assertHeadersExist($assertedHeaders);

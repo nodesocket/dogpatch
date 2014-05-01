@@ -17,6 +17,8 @@
 
     require_once(dirname(__DIR__) . "/Dogpatch.php");
 
+    use Dogpatch\Dogpatch;
+
     $dogpatch = new Dogpatch(array(
         "username" => "foo",
         "password" => 'bar',
@@ -24,14 +26,14 @@
     ));
 
     $dogpatch->get("https://api.stripe.com")
-             ->assert_status_code(401)
-             ->assert_headers_exist(array(
+             ->assertStatusCode(401)
+             ->assertHeadersExist(array(
                 "www-Authenticate"
              ))
-             ->assert_headers(array(
+             ->assertHeaders(array(
                 "Server" => "nginx",
                 "Cache-Control" => "no-cache, no-store"
              ))
-             ->assert_body(IS_VALID_JSON)
+             ->assertBody(IS_VALID_JSON)
              ->close();
 ?>
