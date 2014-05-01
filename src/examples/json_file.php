@@ -31,6 +31,6 @@
              ->assertHeaders(array(
                 "Access-Control-Allow-Origin" => "*"
              ))
-             ->assertBodyJsonFile(__DIR__ . "/json/freegeoip.net.json", ECHO_JSON)
+             ->assertBodyJsonFile(__DIR__ . "/json/freegeoip.net.json", PRINT_JSON)
              ->close();
 ?>
