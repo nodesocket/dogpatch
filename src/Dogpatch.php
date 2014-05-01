@@ -17,6 +17,8 @@ namespace Dogpatch;
 # limitations under the License.
 */
 
+require_once(__DIR__ . '/Util.php');
+
 define("IS_VALID_JSON", "IS_VALID_JSON");
 define("IS_EMPTY", "IS_EMPTY");
 define("USE_REGEX", true);
@@ -122,7 +124,7 @@ class Dogpatch extends Curl {
         ////
         // Associated array
         ////
-        if (isAssoc($assertedHeaders)) {
+        if (is_assoc($assertedHeaders)) {
             $assertedHeaders = array_change_key_case($assertedHeaders, CASE_LOWER);
 
             foreach ($assertedHeaders as $k => $v) {
@@ -225,8 +227,8 @@ class Dogpatch extends Curl {
             throw new \Exception("Response body is invalid JSON.");
         }
 
-        $asserted = prettyPrintJSON($asserted);
-        $body = prettyPrintJSON($this->body);
+        $asserted = pretty_print_json($asserted);
+        $body = pretty_print_json($this->body);
 
         if ($asserted != $body) {
             if ($onNotEqualPrintJson) {
