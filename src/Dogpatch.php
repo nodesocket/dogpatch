@@ -186,11 +186,12 @@ class Dogpatch extends Curl {
         }
 
         if ($asserted != $body) {
+            $errorMessage = "Asserted body does not equal response body.";
             if ($onNotEqualVarExport) {
-                throw new \Exception("Asserted body does not equal response body.\n\n--------------- ASSERTED BODY ---------------\n" . var_export($asserted, true) . "\n\n--------------- RESPONSE BODY ---------------\n" . var_export($body, true) . "\n\n");
-            } else {
-                throw new \Exception("Asserted body does not equal response body.");
+                $errorMessage .= "\n\n--------------- ASSERTED BODY ---------------\n" . var_export($asserted, true) .
+                                 "\n\n--------------- RESPONSE BODY ---------------\n" . var_export($body, true) . "\n\n";
             }
+            throw new \Exception($errorMessage);
         }
 
         return $this;
@@ -218,11 +219,12 @@ class Dogpatch extends Curl {
         $body = pretty_print_json($this->body);
 
         if ($asserted != $body) {
+            $errorMessage = "Asserted JSON file does not equal response body.";
             if ($onNotEqualPrintJson) {
-                throw new \Exception("Asserted JSON file does not equal response body.\n\n--------------- ASSERTED JSON FILE ---------------\n" . $asserted . "\n\n--------------- RESPONSE BODY ---------------\n" . $body . "\n\n");
-            } else {
-                throw new \Exception("Asserted JSON file does not equal response body.");
+                $errorMessage .= "\n\n--------------- ASSERTED JSON FILE ---------------\n" . $asserted .
+                                 "\n\n--------------- RESPONSE BODY ---------------\n" . $body . "\n\n";
             }
+            throw new \Exception($errorMessage);
         }
 
         return $this;
