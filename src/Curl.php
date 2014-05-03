@@ -106,5 +106,3 @@ class Curl {
         unset($this->curlObject);
     }
 }
-
-?>

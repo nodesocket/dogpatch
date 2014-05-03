@@ -33,4 +33,3 @@
              ))
              ->assertBodyJsonFile(__DIR__ . "/json/freegeoip.net.json", PRINT_JSON)
              ->close();
-?>

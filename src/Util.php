@@ -107,5 +107,3 @@ function pretty_print_json($json) {
 
     return $result;
 }
-
-?>

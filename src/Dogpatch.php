@@ -240,5 +240,3 @@ class Dogpatch extends Curl {
         unset($this->body);
     }
 }
-
-?>

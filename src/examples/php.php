@@ -46,4 +46,3 @@
              ))
              ->assertBodyPhp($expected, VAR_EXPORT)
              ->close();
-?>

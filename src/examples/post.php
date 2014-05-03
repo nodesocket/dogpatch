@@ -36,4 +36,3 @@
              ))
              ->assertBody(IS_VALID_JSON)
              ->close();
-?>
