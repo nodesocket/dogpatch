@@ -39,7 +39,7 @@ class Curl {
         curl_setopt($this->curlObject, CURLOPT_MAXREDIRS, 10);
         curl_setopt($this->curlObject, CURLOPT_HEADER, 1);
 
-        if ($this->curlOptions['sslVerifyPeer']) {
+        if ($this->curlOptions['ssl_verifypeer']) {
             curl_setopt($this->curlObject, CURLOPT_CAINFO, __DIR__ . '/assets/ssl/ca-bundle.crt');
             curl_setopt($this->curlObject, CURLOPT_SSL_VERIFYPEER, true);
         } else {
@@ -76,25 +76,25 @@ class Curl {
     }
 
     protected function getRequest($url, array $headers = array()) {
-        $this->execute('GET', $url, $headers);
+       return $this->execute('GET', $url, $headers);
     }
 
     protected function postRequest($url, array $postData = array(), array $headers = array()) {
         curl_setopt($this->curlObject, CURLOPT_POSTFIELDS, $postData);
 
-        $this->execute('POST', $url, $headers);
+        return $this->execute('POST', $url, $headers);
     }
 
     protected function putRequest($url, array $headers = array()) {
-        $this->execute('PUT', $url, $headers);
+        return $this->execute('PUT', $url, $headers);
     }
 
     protected function deleteRequest($url, array $headers = array()) {
-        $this->execute('DELETE', $url, $headers);
+        return $this->execute('DELETE', $url, $headers);
     }
 
     protected function headRequest($url, array $headers = array()) {
-        $this->execute('HEAD', $url, $headers);
+        return $this->execute('HEAD', $url, $headers);
     }
 
     protected function getCurlInfo($curl_option) {
