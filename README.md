@@ -11,15 +11,15 @@ dogpatch
 $dogpatch = new Dogpatch();
 
 $dogpatch->get("https://api.github.com")
-         ->assert_status_code(200)
-         ->assert_headers_exist(array(
+         ->assertStatusCode(200)
+         ->assertHeadersExist(array(
             "X-GitHub-Request-Id",
             "ETag"
          ))
-         ->assert_headers(array(
+         ->assertHeaders(array(
             "Server" => "GitHub.com"
          ))
-         ->assert_body(IS_VALID_JSON)
+         ->assertBody(IS_VALID_JSON)
          ->close();
 ````
 
@@ -27,14 +27,14 @@ $dogpatch->get("https://api.github.com")
 $dogpatch = new Dogpatch();
 
 $dogpatch->get("https://freegeoip.net/json/8.8.8.8")
-         ->assert_status_code(200)
-         ->assert_headers_exist(array(
+         ->assertStatusCode(200)
+         ->assertHeadersExist(array(
             "Content-Length"
          ))
-         ->assert_headers(array(
+         ->assertHeaders(array(
             "Access-Control-Allow-Origin" => "*"
          ))
-         ->assert_body_json_file(dirname(__DIR__) . "/examples/json/freegeoip.net.json")
+         ->assertBodyJsonFile(dirname(__DIR__) . "/examples/json/freegeoip.net.json")
          ->close();
 ````
 
@@ -53,7 +53,7 @@ Constructor
 -----------
 
 ````php
-$dogpatch = new Dogpatch(array $curl_options = array());
+$dogpatch = new Dogpatch(array $curlOptions = array());
 ````
 
 ##### Curl Options
@@ -85,14 +85,14 @@ Post
 ----
 
 ````php
-$dogpatch->post($url, array $post_data = array(), array $headers = array());
+$dogpatch->post($url, array $postData = array(), array $headers = array());
 ````
 
 ##### Parameters
 
 >**url:** A compete url including the scheme *(HTTP, HTTPS)*.
 
->**post_data:** An associated arrray of post data in `key => value` syntax.
+>**postData:** An associated array of post data in `key => value` syntax.
 
 >**headers:** An optional associated array of additional request headers to pass. Defaults to an empty array.
 
@@ -139,73 +139,73 @@ Assert Status Code
 ------------------
 
 ````php
-$dogpatch->assert_status_code($asserted_staus_code);
+$dogpatch->assertStatusCode($assertedStatusCode);
 ````
 
 ##### Parameters
 
->**asserted_staus_code:** An integer representing the expected response status code.
+>**assertedStatusCode:** An integer representing the expected response status code.
 
 Assert Headers Exist
 --------------------
 
 ````php
-$dogpatch->assert_headers_exist(array $asserted_headers = array());
+$dogpatch->assertHeadersExist(array $assertedHeaders = array());
 ````
 
 ##### Parameters
 
->**asserted_headers:** A standard indexed array of expected response headers. The acutal values of the response headers **are not checked**, only that the header exists. The headers are checked **case-insensitive**.
+>**assertedHeaders:** A standard indexed array of expected response headers. The acutal values of the response headers **are not checked**, only that the header exists. The headers are checked **case-insensitive**.
 
 Assert Headers
 --------------
 
 ````php
-$dogpatch->assert_headers(array $asserted_headers = array());
+$dogpatch->assertHeaders(array $assertedHeaders = array());
 ````
 
 ##### Parameters
 
->**asserted_headers:** An associated array of expected response headers and their expected value. The acutal values of the response headers **are checked**. The headers are checked **case-insensitive** but the header values are checked **case-sensitive**.
+>**assertedHeaders:** An associated array of expected response headers and their expected value. The acutal values of the response headers **are checked**. The headers are checked **case-insensitive** but the header values are checked **case-sensitive**.
 
 Assert Body
 -----------
 
 ````php
-$dogpatch->assert_body($asserted_body, $use_regular_expression = false);
+$dogpatch->assertBody($assertedBody, $useRegularExpression = false);
 ````
 
 ##### Parameters
 
->**asserted_body:** Assert a response body, takes one of four options. A string that is checked **case-sensitive**. A regular expression that is checked according to the defined expression. A speical flag `IS_VALID_JSON` or `IS_EMPTY`. `IS_VALID_JSON` only validates that the response body is proper JSON and able to be decoded. `IS_EMPTY` validates that the response body is empty.
+>**assertedBody:** Assert a response body, takes one of four options. A string that is checked **case-sensitive**. A regular expression that is checked according to the defined expression. A speical flag `IS_VALID_JSON` or `IS_EMPTY`. `IS_VALID_JSON` only validates that the response body is proper JSON and able to be decoded. `IS_EMPTY` validates that the response body is empty.
 
->**use_regular_expression:** An optional true/false flag which you may reference with globals `USE_REGEX` and `DONT_USE_REGEX`. If you wish `$asserted_body` to be checked via regular expression, you must set this parameter to true. Defaults to false.
+>**useRegularExpression:** An optional true/false flag which you may reference with globals `USE_REGEX` and `DONT_USE_REGEX`. If you wish `$assertedBody` to be checked via regular expression, you must set this parameter to true. Defaults to false.
 
 Assert Body Against PHP
 -----------------------
 
 ````php
-$dogpatch->assert_body_php($asserted, $on_not_equal_var_export = false);
+$dogpatch->assertBodyPhp($asserted, $onNotEqualVarExport = false);
 ```
 
 ##### Parameters
 
 >**asserted:** Assert a native PHP type *(usually a PHP object or array)* against the response body. The response body must be valid JSON, which is automatically decoded and compared against `$asserted`. PHP type keys and values are checked **case-sensitive**.
 
->**on_not_equal_var_export:** An optional true/false flag which you may reference with globals `VAR_EXPORT` and `DONT_VAR_EXPORT`. If a mismatch is detected between `$asserted` and the response body, variable export both making it convenient to find discrepancies. Defaults to false.
+>**onNotEqualVarExport:** An optional true/false flag which you may reference with globals `VAR_EXPORT` and `DONT_VAR_EXPORT`. If a mismatch is detected between `$asserted` and the response body, variable export both making it convenient to find discrepancies. Defaults to false.
 
 Assert Body Against JSON File
 -----------------------------
 
 ````php
-$dogpatch->assert_body_json_file($asserted_json_file, $on_not_equal_print_json = false);
+$dogpatch->assertBodyJsonFile($assertedJsonFile, $onNotEqualPrintJson = false);
 ```
 
 ##### Parameters
 
->**asserted_json_file:** Assert a JSON file *(the full path)* against the response body. The response body must be valid JSON, which is automatically decoded, pretty printed, and compared against the passed-in JSON file which is also pretty printed. Key names and values are checked **case-sensitive**.
+>**assertedJsonFile:** Assert a JSON file *(the full path)* against the response body. The response body must be valid JSON, which is automatically decoded, pretty printed, and compared against the passed-in JSON file which is also pretty printed. Key names and values are checked **case-sensitive**.
 
->**on_not_equal_print_json:** An optional true/false flag which you may reference with globals `PRINT_JSON` and `DONT_PRINT_JSON`. If a mismatch is detected between the JSON file and the response body, print both making it convenient to find discrepancies. Defaults to false.
+>**onNotEqualPrintJson:** An optional true/false flag which you may reference with globals `PRINT_JSON` and `DONT_PRINT_JSON`. If a mismatch is detected between the JSON file and the response body, print both making it convenient to find discrepancies. Defaults to false.
 
 Close
 -----

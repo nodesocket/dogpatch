@@ -15,7 +15,11 @@
     # limitations under the License.
     */
 
-    require_once(dirname(__dir__) . "/Dogpatch.php");
+    require_once(__DIR__ . "/../Util.php");
+    require_once(__DIR__ . "/../Curl.php");
+    require_once(__DIR__ . "/../Dogpatch.php");
+
+    use Dogpatch\Dogpatch;
 
     $expected = new stdClass();
     $expected->ip = "8.8.8.8";
@@ -33,13 +37,12 @@
     $dogpatch = new Dogpatch();
 
     $dogpatch->get("https://freegeoip.net/json/8.8.8.8")
-             ->assert_status_code(200)
-             ->assert_headers_exist(array(
+             ->assertStatusCode(200)
+             ->assertHeadersExist(array(
                 "Date"
              ))
-             ->assert_headers(array(
+             ->assertHeaders(array(
                 "Access-Control-Allow-Origin" => "*"
              ))
-             ->assert_body_php($expected, VAR_EXPORT)
+             ->assertBodyPhp($expected, VAR_EXPORT)
              ->close();
-?>

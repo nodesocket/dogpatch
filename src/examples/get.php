@@ -15,37 +15,40 @@
     # limitations under the License.
     */
 
-    require_once(dirname(__DIR__) . "/Dogpatch.php");
+    require_once(__DIR__ . "/../Util.php");
+    require_once(__DIR__ . "/../Curl.php");
+    require_once(__DIR__ . "/../Dogpatch.php");
+
+    use Dogpatch\Dogpatch;
 
     $dogpatch = new Dogpatch();
 
     $dogpatch->get("https://freegeoip.net/csv/8.8.8.8")
-             ->assert_status_code(200)
-             ->assert_headers(array(
+             ->assertStatusCode(200)
+             ->assertHeaders(array(
                 "Access-Control-Allow-Origin" => "*"
              ))
-             ->assert_body('"8.8.8.8","US","United States","","","","","38.0000","-97.0000","",""');
+             ->assertBody('"8.8.8.8","US","United States","","","","","38.0000","-97.0000","",""');
 
     $dogpatch->get("https://www.google.com")
-             ->assert_status_code(200)
-             ->assert_headers_exist(array(
+             ->assertStatusCode(200)
+             ->assertHeadersExist(array(
                 "X-Frame-Options"
              ))
-             ->assert_headers(array(
+             ->assertHeaders(array(
                 "Server" => "gws",
                 "Transfer-Encoding" => "chunked"
              ))
-             ->assert_body("/<!doctype html>.*/", USE_REGEX);
+             ->assertBody("/<!doctype html>.*/", USE_REGEX);
 
     $dogpatch->get("https://api.github.com")
-             ->assert_status_code(200)
-             ->assert_headers_exist(array(
+             ->assertStatusCode(200)
+             ->assertHeadersExist(array(
                 "X-GitHub-Request-Id",
                 "ETag"
              ))
-             ->assert_headers(array(
+             ->assertHeaders(array(
                 "Server" => "GitHub.com"
              ))
-             ->assert_body(IS_VALID_JSON)
+             ->assertBody(IS_VALID_JSON)
              ->close();
-?>
