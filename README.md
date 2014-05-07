@@ -38,7 +38,7 @@ $dogpatch->get("https://freegeoip.net/json/8.8.8.8")
          ->close();
 ````
 
-#### See the full examples at https://github.com/commando/dogpatch/tree/master/examples.
+#### See the full examples at https://github.com/commando/dogpatch/tree/master/src/examples.
 
 Requirements
 ------------
