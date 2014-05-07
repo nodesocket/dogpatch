@@ -111,7 +111,7 @@ class Dogpatch extends Curl {
         ////
         // Associated array
         ////
-        if (is_assoc($assertedHeaders)) {
+        if (isAssoc($assertedHeaders)) {
             $assertedHeaders = array_change_key_case($assertedHeaders, CASE_LOWER);
 
             foreach ($assertedHeaders as $k => $v) {
@@ -215,8 +215,8 @@ class Dogpatch extends Curl {
             throw new \Exception("Response body is invalid JSON.");
         }
 
-        $asserted = pretty_print_json($asserted);
-        $body = pretty_print_json($this->body);
+        $asserted = prettyPrintJson($asserted);
+        $body = prettyPrintJson($this->body);
 
         if ($asserted != $body) {
             $errorMessage = "Asserted JSON file does not equal response body.";

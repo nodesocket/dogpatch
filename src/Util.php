@@ -41,14 +41,14 @@ function http_parse_headers($raw_headers) {
 ////
 // Via: http://stackoverflow.com/a/4254008/425964
 ////
-function is_assoc($array) {
+function isAssoc($array) {
     return (bool) count(array_filter(array_keys($array), 'is_string'));
 }
 
 ////
 // Via: http://stackoverflow.com/a/9776726/425964
 ////
-function pretty_print_json($json) {
+function prettyPrintJson($json) {
     $result = '';
     $level = 0;
     $prev_char = '';

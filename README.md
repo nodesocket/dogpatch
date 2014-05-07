@@ -1,7 +1,7 @@
 dogpatch
 ========
 
-![dogpatch](https://raw.github.com/commando/dogpatch/master/assets/images/dogpatch.jpg)
+![dogpatch](https://raw.github.com/commando/dogpatch/master/src/assets/images/dogpatch.jpg)
 
 #### An HTTP API testing framework, written in PHP using curl. Supports ssl, basic auth, passing custom request headers, redirection *(10 levels)*, and most HTTP request methods. Orginally written for testing the [Commando.io](https://commando.io) API.
 
@@ -235,7 +235,7 @@ $dogpatch->get("https://github.com")
          ->close();
 ````
 
-Or, even better, if you'd like to reuse the same curl connection and options:
+Or, even better, if you'd like to reuse the same curl connection and curl options:
 
 ````php
 $dogpatch = new Dogpatch();

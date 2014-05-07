@@ -3,9 +3,12 @@
     "description": "An HTTP API testing framework, written in PHP using curl",
     "authors": [
         {
-            "name": "NodeSocket"
+            "name": "Commando.io",
+            "homepage": "https://commando.io"
         }
     ],
+    "homepage": "https://github.com/commando/dogpatch",
+    "license": "Apache-2.0",
     "autoload": {
         "psr-4": {
             "Dogpatch\\": "src/"

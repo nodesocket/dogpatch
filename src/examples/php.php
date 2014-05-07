@@ -32,7 +32,7 @@
     $expected->latitude = 38;
     $expected->longitude = -97;
     $expected->metro_code = "";
-    $expected->areacode = "";
+    $expected->area_code = "";
 
     $dogpatch = new Dogpatch();
 
