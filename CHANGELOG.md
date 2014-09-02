@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+## v1.1.0 - *9/2/2014*
+- Fixed bug in Curl.php. It was always setting CURLOPT_POST to false, which would not send POST requests.
+
 ### v1.0.0 - *5/6/2014*
 - Composer support
 - PSR-4 compliant

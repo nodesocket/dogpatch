@@ -65,7 +65,11 @@ class Curl {
 
     private function execute($method, $url, array $headers = array()) {
         curl_setopt($this->curlObject, CURLOPT_URL, $url);
-        curl_setopt($this->curlObject, CURLOPT_POST, false);
+
+        if (strtoupper($method) !== 'POST') {
+            curl_setopt($this->curlObject, CURLOPT_POST, false);
+        }
+
         curl_setopt($this->curlObject, CURLOPT_CUSTOMREQUEST, $method);
 
         if (!empty($headers)) {
