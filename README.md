@@ -3,7 +3,7 @@ dogpatch
 
 ![dogpatch](https://raw.github.com/commando/dogpatch/master/src/assets/images/dogpatch.jpg)
 
-#### An HTTP API testing framework, written in PHP using curl. Supports ssl, basic auth, passing custom request headers, redirection *(10 levels)*, and most HTTP request methods. Orginally written for testing the [Commando.io](https://commando.io) API.
+#### An HTTP API testing framework, written in PHP using curl. Supports ssl, basic auth, passing custom request headers, redirection *(10 levels)*, and most HTTP request methods. Originally written for testing the [Commando.io](https://commando.io) API.
 
 ##### Canonical Examples
 
@@ -155,7 +155,7 @@ $dogpatch->assertHeadersExist(array $assertedHeaders = array());
 
 ##### Parameters
 
->**assertedHeaders:** A standard indexed array of expected response headers. The acutal values of the response headers **are not checked**, only that the header exists. The headers are checked **case-insensitive**.
+>**assertedHeaders:** A standard indexed array of expected response headers. The actual values of the response headers **are not checked**, only that the header exists. The headers are checked **case-insensitive**.
 
 Assert Headers
 --------------
@@ -166,7 +166,7 @@ $dogpatch->assertHeaders(array $assertedHeaders = array());
 
 ##### Parameters
 
->**assertedHeaders:** An associated array of expected response headers and their expected value. The acutal values of the response headers **are checked**. The headers are checked **case-insensitive** but the header values are checked **case-sensitive**.
+>**assertedHeaders:** An associated array of expected response headers and their expected value. The actual values of the response headers **are checked**. The headers are checked **case-insensitive** but the header values are checked **case-sensitive**.
 
 Assert Body
 -----------
@@ -177,7 +177,7 @@ $dogpatch->assertBody($assertedBody, $useRegularExpression = false);
 
 ##### Parameters
 
->**assertedBody:** Assert a response body, takes one of four options. A string that is checked **case-sensitive**. A regular expression that is checked according to the defined expression. A speical flag `IS_VALID_JSON` or `IS_EMPTY`. `IS_VALID_JSON` only validates that the response body is proper JSON and able to be decoded. `IS_EMPTY` validates that the response body is empty.
+>**assertedBody:** Assert a response body, takes one of four options. A string that is checked **case-sensitive**. A regular expression that is checked according to the defined expression. A special flag `IS_VALID_JSON` or `IS_EMPTY`. `IS_VALID_JSON` only validates that the response body is proper JSON and able to be decoded. `IS_EMPTY` validates that the response body is empty.
 
 >**useRegularExpression:** An optional true/false flag which you may reference with globals `USE_REGEX` and `DONT_USE_REGEX`. If you wish `$assertedBody` to be checked via regular expression, you must set this parameter to true. Defaults to false.
 

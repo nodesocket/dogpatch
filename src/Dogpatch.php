@@ -73,13 +73,13 @@ class Dogpatch extends Curl {
         return $this;
     }
 
-    public function assertStatusCode($assertedStausCode) {
+    public function assertStatusCode($assertedStatusCode) {
         if (empty($this->statusCode)) {
             $this->statusCode = $this->getCurlInfo(CURLINFO_HTTP_CODE);
         }
 
-        if (intval($assertedStausCode) !== intval($this->statusCode)) {
-            throw new \Exception("Asserted status code '$assertedStausCode' does not equal response status code '$this->statusCode'.");
+        if (intval($assertedStatusCode) !== intval($this->statusCode)) {
+            throw new \Exception("Asserted status code '$assertedStatusCode' does not equal response status code '$this->statusCode'.");
         }
 
         return $this;
