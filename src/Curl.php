@@ -80,7 +80,7 @@ class Curl {
     }
 
     protected function getRequest($url, array $headers = array()) {
-       return $this->execute('GET', $url, $headers);
+        return $this->execute('GET', $url, $headers);
     }
 
     protected function postRequest($url, array $postData = array(), array $headers = array()) {
