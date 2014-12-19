@@ -15,7 +15,6 @@
     # limitations under the License.
     */
 
-    require_once(__DIR__ . "/../Util.php");
     require_once(__DIR__ . "/../Curl.php");
     require_once(__DIR__ . "/../Dogpatch.php");
 
@@ -25,14 +24,14 @@
     $expected->ip = "8.8.8.8";
     $expected->country_code = "US";
     $expected->country_name = "United States";
-    $expected->region_code = "";
-    $expected->region_name = "";
-    $expected->city = "";
-    $expected->zipcode = "";
-    $expected->latitude = 38;
-    $expected->longitude = -97;
-    $expected->metro_code = "";
-    $expected->area_code = "";
+    $expected->region_code = "CA";
+    $expected->region_name = "California";
+    $expected->city = "Mountain View";
+    $expected->zip_code = "94035";
+    $expected->time_zone = "America/Los_Angeles";
+    $expected->latitude = 37.386000000000003;
+    $expected->longitude = -122.084;
+    $expected->metro_code = 807;
 
     $dogpatch = new Dogpatch();
 
