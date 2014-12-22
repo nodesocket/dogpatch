@@ -49,5 +49,10 @@
              ->assertHeaders(array(
                 "Server" => "GitHub.com"
              ))
-             ->assertBody(IS_VALID_JSON)
-             ->close();
+             ->assertBody(IS_VALID_JSON);
+
+    $dogpatch->get('https://api.github.com')
+            ->assertStatusCode(200)
+            ->assertTotalTimeLessThan(1)
+            ->assertBody(IS_VALID_JSON)
+            ->close();
