@@ -20,6 +20,7 @@ $dogpatch->get("https://api.github.com")
             "Server" => "GitHub.com"
          ))
          ->assertBody(IS_VALID_JSON)
+         ->assertTotalTimeLessThan(2)
          ->close();
 ````
 
