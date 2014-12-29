@@ -50,4 +50,5 @@
                 "Server" => "GitHub.com"
              ))
              ->assertBody(IS_VALID_JSON)
+             ->assertTotalTimeLessThan(2)
              ->close();

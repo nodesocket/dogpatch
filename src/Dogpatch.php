@@ -33,6 +33,7 @@ class Dogpatch extends Curl {
     private $statusCode;
     private $headers;
     private $body;
+    private $totalTime;
 
     public function __construct(array $curlOptions = array()) {
         parent::__construct($curlOptions);
@@ -230,6 +231,18 @@ class Dogpatch extends Curl {
         return $this;
     }
 
+    public function assertTotalTimeLessThan($assertedTime) {
+        if (empty($this->totalTime)) {
+            $this->totalTime = $this->getCurlInfo(CURLINFO_TOTAL_TIME);
+        }
+
+        if (floatval($assertedTime) < floatval($this->totalTime)) {
+            throw new \Exception("Asserted total time '$assertedTime' is less than '$this->totalTime'.");
+        }
+
+        return $this;
+    }
+
     public function close() {
         parent::close();
         $this->unsetClassVars();
@@ -240,5 +253,6 @@ class Dogpatch extends Curl {
         unset($this->statusCode);
         unset($this->headers);
         unset($this->body);
+        unset($this->totalTime);
     }
 }

@@ -207,6 +207,17 @@ $dogpatch->assertBodyJsonFile($assertedJsonFile, $onNotEqualPrintJson = false);
 
 >**onNotEqualPrintJson:** An optional true/false flag which you may reference with globals `PRINT_JSON` and `DONT_PRINT_JSON`. If a mismatch is detected between the JSON file and the response body, print both making it convenient to find discrepancies. Defaults to false.
 
+Assert Total Time is Less Than
+------------------------------
+
+````php
+$dogpatch->assertTotalTimeLessThan($assertedTime);
+````
+
+##### Parameters
+
+>**$assertedTime:** Float representing the maximum value in seconds of the total request time.  
+
 Close
 -----
 
