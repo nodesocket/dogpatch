@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+## V1.1.2 - *12/29/2014*
+
+- Added `assertTotalTimeLessThan()` assertion. Thanks [@dvhirt](https://github.com/dvhirt)
+
 ## V1.1.1 - *9/8/2014*
 
 - Updated `ca-bundle.crt` to the latest version.
