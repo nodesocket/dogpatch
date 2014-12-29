@@ -231,7 +231,7 @@ class Dogpatch extends Curl {
         return $this;
     }
 
-    public function assertTotalTimeLessThan($assertedTime){
+    public function assertTotalTimeLessThan($assertedTime) {
         if (empty($this->totalTime)) {
             $this->totalTime = $this->getCurlInfo(CURLINFO_TOTAL_TIME);
         }
