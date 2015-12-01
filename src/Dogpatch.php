@@ -155,7 +155,7 @@ class Dogpatch extends Curl {
         }
 
         if ($assertedBody === IS_VALID_JSON) {
-            if (json_decode($this->body === null)) {
+            if (json_decode($this->body) === null) {
                 throw new \Exception("Response body is invalid JSON.");
             }
 
