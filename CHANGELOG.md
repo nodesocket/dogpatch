@@ -3,7 +3,7 @@ CHANGELOG
 
 ## V1.1.3 - *12/01/2015*
 
-- Fixes typo in assertBody(IS_VALID_JSON). Thanks [@pmcneill](https://github.com/pmcneill)
+- Fixes typo in `assertBody()`. Thanks [@pmcneill](https://github.com/pmcneill)
 
 ## V1.1.2 - *12/29/2014*
 
