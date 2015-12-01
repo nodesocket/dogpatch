@@ -27,10 +27,10 @@
     $expected->region_code = "CA";
     $expected->region_name = "California";
     $expected->city = "Mountain View";
-    $expected->zip_code = "94035";
+    $expected->zip_code = "94040";
     $expected->time_zone = "America/Los_Angeles";
     $expected->latitude = 37.386000000000003;
-    $expected->longitude = -122.084;
+    $expected->longitude = -122.0838;
     $expected->metro_code = 807;
 
     $dogpatch = new Dogpatch();
