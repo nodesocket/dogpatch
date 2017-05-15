@@ -167,7 +167,7 @@ class Dogpatch extends Curl {
                 throw new \Exception("Asserted body '$assertedBody' does not match response body of '$this->body'.");
             }
         } else {
-            if (strpos($assertedBody, $this->body)) {
+            if (strpos($assertedBody, $this->body) === false) {
                 throw new \Exception("Asserted body '$assertedBody' does not equal response body of '$this->body'.");
             }
         }
