@@ -187,7 +187,7 @@ Assert Body Against PHP
 
 ````php
 $dogpatch->assertBodyPhp($asserted, $onNotEqualVarExport = false);
-```
+````
 
 ##### Parameters
 
@@ -200,7 +200,7 @@ Assert Body Against JSON File
 
 ````php
 $dogpatch->assertBodyJsonFile($assertedJsonFile, $onNotEqualPrintJson = false);
-```
+````
 
 ##### Parameters
 
